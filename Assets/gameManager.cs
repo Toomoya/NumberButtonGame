@@ -18,7 +18,10 @@ public class gameManager : MonoBehaviour {
 	int clickButtonCount=1;
 	string selectColor;
 	int[] clickNumber; 
+	bool clickOk=false;
 	// Use this for initialization
+	int counter=0;
+
 	void Start () {
 		int[] number = new int[9];
 		clickNumber = new int[9];
@@ -59,7 +62,6 @@ public class gameManager : MonoBehaviour {
 	// Update is called once per frames
 	void Update () {
 		Timer ();
-		
 	}
 //	タイマー
 	void Timer (){
@@ -68,28 +70,42 @@ public class gameManager : MonoBehaviour {
 	}
 
 	public void CountButton (int k){
-//		for (int i = 0; i < clickNumber.Length; i++) {
-//			clickNumber [i] = k;
+		if (k == clickButtonCount) {
 			Debug.Log (k);
-//		}
-//		if (k == clickButtonCount) {
-//			Debug.Log (k);
-//			clickButtonCount++;
-//		}
+			//clickButtonCount++;
+			clickOk = true;
+		}
 	}
 	public void ColorButton(string s){
-		Debug.Log (s);
-//		if (s == "red") {
-//			Debug.Log (s);
-//		} 
-//		if (s == "blue") {
-//			Debug.Log (s);
-//		}
-//		if (s == "white") {
-//			Debug.Log (s);
-//		}
+//		空じゃなかったら色を出力
+		if (s != "") {
+			if (clickOk == true) {
+				counter++;
+				if (s == "red") {
+					if (counter >= redCount) {
+						counter = 0;
+						clickButtonCount++;
+					}
+				}
+				if (s == "blue") {
+					if (counter >= blueCount) {
+						counter = 0;
+						clickButtonCount++;
+					}
+				}
+				if (s == "white") {
+					if (counter >= whiteCount) {
+						counter = 0;
+						clickButtonCount++;
+					}
+				}
+				clickOk = false;
+				if (clickButtonCount > 9) {
+					Debug.Log ("Finish!! Your Time is" + timer);
+				}
+			}
+		}
 	}
-
 
 }
 
