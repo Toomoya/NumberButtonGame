@@ -51,9 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\buttonController.cs" />
-     <Compile Include="Assets\gameManager.cs" />
-     <Compile Include="Assets\hasi.cs" />
+     <Compile Include="Assets\Script\gameManager.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>
