@@ -5,19 +5,24 @@ using UnityEngine.UI;
 
 public class gameManager2 : MonoBehaviour
 {
+	
 	int random;
 	//	タイマーを数え表示させるためのもの
 	float timer;
 	public Text timerText;
+	//	押すべきボタンの配列中身
+	int clickButtonCount=0;
+	//押すべきボタンの中身を入れておくもの
 	int[] toClickButtonNumber;
 	//	何回までボタンを押せるのか
-	int clickButtonCount=0;
 	int whiteCount = 2;
 	int blueCount = 3;
 	int redCount = 4;
+	// 選んだ色
 	string selectColor;
 	bool clickOk = false;
 	int counter = 0;
+	//AudioSource
 	AudioSource audioSource;
 	public AudioClip goodSound;
 	public AudioClip badSound;
@@ -76,7 +81,7 @@ public class gameManager2 : MonoBehaviour
 			GameObject.Find ("Button" + (i + 1)).GetComponentInChildren<Text> ().text = number [i].ToString ();
 			int buttonNumber = number [i];
 			string buttonColor = selectColor;
-			//			各ボタンに引数(ボタンの番号と色)を渡す
+			//各ボタンに引数(ボタンの番号と色)を渡す
 			GameObject.Find ("Button" + (i + 1)).GetComponent<Button> ().onClick.AddListener (() => CountButton (buttonNumber));
 			GameObject.Find ("Button" + (i + 1)).GetComponent<Button> ().onClick.AddListener (() => ColorButton (buttonColor));
 		}
@@ -111,12 +116,12 @@ public class gameManager2 : MonoBehaviour
 
 	public void ColorButton (string s)
 	{
-		//		空じゃなかったら色を出力
+		//空じゃなかったら色を出力
 		if (clickOk == true) {
 			counter++;
-			//				押したボタンが何色かどうか
+			//押したボタンが何色かどうか
 			if (s == "red") {
-				//					それぞれのボタンの押すべき回数を超えたか
+				//それぞれのボタンの押すべき回数を超えたか
 				if (counter >= redCount) {
 					counter = 0;
 					clickButtonCount++;
@@ -137,6 +142,8 @@ public class gameManager2 : MonoBehaviour
 
 			clickOk = false;
 			if (clickButtonCount > 8) {
+//				押すべきボタンの中身をリセットする
+				toClickButtonNumber [8] = 0;
 				Debug.Log ("Finish!! Your Time is" + timer);
 			}
 		}

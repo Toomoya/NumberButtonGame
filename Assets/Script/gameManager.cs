@@ -18,8 +18,8 @@ public class gameManager : MonoBehaviour
 	//	押さないといけないボタンの番号
 	int clickButtonCount = 1;
 	string selectColor;
+
 	bool clickOk = false;
-	// Use this for initialization
 	int counter = 0;
 	AudioSource audioSource;
 	public AudioClip goodSound;
@@ -80,7 +80,6 @@ public class gameManager : MonoBehaviour
 	public void CountButton (int k)
 	{
 		if (k == clickButtonCount) {
-			Debug.Log (k);
 			audioSource.clip = goodSound;
 			audioSource.Play ();
 			clickOk = true;
