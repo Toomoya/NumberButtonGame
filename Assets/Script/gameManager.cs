@@ -8,6 +8,9 @@ public class gameManager : MonoBehaviour
 
 
 	int random;
+
+	int[] number;
+	//int[] clickNumber;
 	//	タイマーを数え表示させるためのもの
 	float timer;
 	public Text timerText;
@@ -27,8 +30,8 @@ public class gameManager : MonoBehaviour
 
 	void Start ()
 	{
-		int[] number = new int[9];
-		int[] clickNumber = new int[9];
+		number = new int[9];
+		//clickNumber = new int[9];
 //		int型の配列に１〜９の番号を格納
 		for (int i = 0; i < number.Length; i++) {
 			number [i] = i + 1;
@@ -118,6 +121,9 @@ public class gameManager : MonoBehaviour
 			clickOk = false;
 			if (clickButtonCount > 9) {
 				Debug.Log ("Finish!! Your Time is" + timer);
+				for (int i = 0; i < number.Length; i++) {
+					GameObject.Find ("Button" + (i + 1)).GetComponent<Button> ().interactable = false;
+				}
 			}
 		}
 	}

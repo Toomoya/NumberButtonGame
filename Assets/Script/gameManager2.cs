@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class gameManager2 : MonoBehaviour
 {
-	
+	int[] number;
 	int random;
 	//	タイマーを数え表示させるためのもの
 	float timer;
@@ -29,7 +29,7 @@ public class gameManager2 : MonoBehaviour
 
 
 	void Start(){
-		int[] number = new int[9];
+		number = new int[9];
 		toClickButtonNumber = new int[9];
 //		ランダムに数字を配列に格納
 		for (int i = 0; i < number.Length; i++) {
@@ -46,9 +46,9 @@ public class gameManager2 : MonoBehaviour
 
 				// 上の方が大きいときは互いに入れ替える
 				if(number[j]<number[j-1]){
-					int t=number[j];
+					int temp=number[j];
 					number[j]=number[j-1];
-					number[j-1]=t;
+					number[j-1]=temp;
 				}
 			}
 		}
@@ -143,8 +143,10 @@ public class gameManager2 : MonoBehaviour
 			clickOk = false;
 			if (clickButtonCount > 8) {
 //				押すべきボタンの中身をリセットする
-				toClickButtonNumber [8] = 0;
 				Debug.Log ("Finish!! Your Time is" + timer);
+				for (int i = 0; i < number.Length; i++) {
+					GameObject.Find ("Button" + (i + 1)).GetComponent<Button> ().interactable = false;
+				}
 			}
 		}
 	}
